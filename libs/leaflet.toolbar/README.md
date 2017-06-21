@@ -8,7 +8,7 @@ Leaflet.Toolbar provides flexible, extensible toolbar interfaces for Leaflet map
 
 ### Examples
 
-View examples for [control-style](http://leaflet.github.io/Leaflet.toolbar/examples/control.html) and [popup-style](http://leaflet.github.io/Leaflet.toolbar/examples/popup.html) toolbars using Leaflet.draw. There is also a [very minimal](http://leaflet.github.io/Leaflet.toolbar/examples/minimal.html) example, to get started.
+View examples for [control-style](http://leaflet.github.io/Leaflet.toolbar/examples/control.html) and [popup-style](http://leaflet.github.io/Leaflet.toolbar/examples/popup.html) toolbars using Leaflet.draw.
 
 ### Usage
 
@@ -44,7 +44,7 @@ Run the test suite using `npm test`.
 
 ### Documentation and Examples
 
-The examples in the gh-pages branch can be updated using Grunt: `grunt gh-pages`. This will create a new commit *and* push that commit to your gh-pages branch on GitHub. If you'd like to simply preview the gh-pages branch, you can run `grunt gh-pages --gh-pages-push false`.
+The examples in the gh-pages branch can be updated using Grunt: `grunt gh-pages:update`. This will create a new commit in the `gh-pages` branch. If you wish to make changes to these examples public, you must subsequently run `git push origin gh-pages`.
 
 Contributors are encouraged to open pull requests early to facilitate discussion about proposed changes!
 

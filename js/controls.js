@@ -1,4 +1,4 @@
-define(['jquery', 'leaflet', 'leaflet.editable', 'leaflet.toolbar'], function ($, L) {
+define(['jquery', 'leaflet.toolbar'], function ($) {
 
 
     var controls = {

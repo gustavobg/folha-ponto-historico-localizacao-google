@@ -1,4 +1,4 @@
-define(['jquery', 'current.position', 'leaflet',  'tiles', 'controls', 'turf', 'prettysize', 'leaflet-heatmap', 'bootstrap'], function ($, CurrentPosition, L, tiles, controls, turf) {
+define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize', 'leaflet-heatmap', 'bootstrap'], function ($, CurrentPosition, tiles, controls, turf) {
     var map;
 
     var layerBuffer = new L.geoJson(null, {});
@@ -35,6 +35,7 @@ define(['jquery', 'current.position', 'leaflet',  'tiles', 'controls', 'turf', '
         localStorage.removeItem('workplace');
     };
     var onEachFeature = function (feature, layer) {
+
         bindLayerEvents(layer);
         addWorkplace(layer);
     };
@@ -44,7 +45,7 @@ define(['jquery', 'current.position', 'leaflet',  'tiles', 'controls', 'turf', '
     var bindLayerEvents = function (layer) {
 
         var removeLocationButton = $('<a href="#" id="remove-location" class="btn btn-danger">Remover local de trabalho</a>');
-
+        layer.disableEdit();
         layer.bindPopup(removeLocationButton.get(0), {})
             .addEventListener('popupopen', function (e) {
                 removeLocationButton.on('click', function (event) { removeLocation(event, e.popup) });

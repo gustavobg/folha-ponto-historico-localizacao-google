@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Visualize your collected Google Location History data using an interactive heatmap directly in your browser.">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css">
     <link rel="stylesheet" href="libs/leaflet.toolbar/dist/leaflet.toolbar.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha256-ENFZrbVzylNbgnXx0n3I1g//2WeO47XxoPe0vkp3NC8=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="node_modules/leaflet-geosearch/assets/css/leaflet.css">
+    <link rel="stylesheet" href="libs/leaflet.geosearch/assets/css/leaflet.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:200,400" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="styles/styles.css" rel="stylesheet" />
@@ -113,12 +113,13 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.js" integrity="sha256-jVfFb7AbGi7S/SLNl8SB4/MYaf549eEs+NlIWMoARHg=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnynEiBhiItwzvp2Ly-p7mL7up2mHl8nA&signed_in=false"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
-<script type="text/javascript" src="node_modules/leaflet-geosearch/dist/bundle.min.js"></script>
-<script type="text/javascript" src="node_modules/requirejs/require.js"></script>
+<script type="text/javascript" src="libs/leaflet.editable/leaflet.editable.js"></script>
+<script type="text/javascript" src="libs/leaflet.geosearch/dist/bundle.min.js"></script>
+<script type="text/javascript" src="libs/requirejs/require.js"></script>
 <script type="text/javascript" src="require-config.js"></script>
 </body>
 </html>

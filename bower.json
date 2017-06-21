@@ -16,6 +16,8 @@
     "tests"
   ],
   "dependencies": {
-    "moment": "^2.17.1"
+    "requirejs": "^2.3.3",
+    "leaflet": "^1.0.3",
+    "Leaflet.toolbar": "leaflet.toolbar#^0.1.2"
   }
 }

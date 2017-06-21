@@ -1,12 +1,11 @@
 {
   "name": "leaflet-toolbar",
-  "version": "0.1.5",
+  "version": "0.1.2",
   "description": "Flexible, extensible toolbars for Leaflet maps.",
   "scripts": {
     "test": "grunt travis",
     "coveralls": "PHANTOM=`ls ./coverage | grep PhantomJS` && cat \"coverage/$PHANTOM/lcov.info\" | coveralls"
   },
-  "main": "dist/leaflet.toolbar.js",
   "devDependencies": {
     "autoprefixer": "^5.1.0",
     "chai": "1.9.1",
@@ -17,16 +16,14 @@
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.10.1",
     "grunt-contrib-concat": "0.4.x",
-    "grunt-contrib-cssmin": "^1.0.1",
     "grunt-contrib-jshint": "~0.6.3",
     "grunt-contrib-less": "~0.11.0",
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": ">=0.3.1",
-    "grunt-contrib-connect": "~0.11",
-    "grunt-gh-pages": "^0.9.1",
     "grunt-karma": "0.8.3",
     "grunt-mocha": "~0.4.11",
+    "grunt-shell": "^1.1.1",
     "jshint": "2.5.x",
     "karma": "0.12.16",
     "karma-chrome-launcher": "^0.1.4",

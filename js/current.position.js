@@ -1,4 +1,4 @@
-define(['moment', 'turf', 'leaflet', 'moment-timezone'], function (moment, turf, L) {
+define(['moment', 'turf', 'moment-timezone'], function (moment, turf) {
 
     var EnumActivity = {
         OTHER: 0,

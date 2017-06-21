@@ -4,17 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "jquery": "^3.2.1",
-    "leaflet": "^1.0.3",
-    "leaflet-geosearch": "^2.2.0",
-    "moment": "^2.18.0",
-    "moment-timezone": "^0.5.13",
-    "requirejs": "^2.3.3",
-    "turf": "^3.0.14"
   },
   "devDependencies": {
     "browser-sync": "^2.18.12",
-    "browserify": "^14.3.0",
     "gulp": "^3.9.1"
   },
   "scripts": {
