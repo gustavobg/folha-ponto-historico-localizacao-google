@@ -1,0 +1,21 @@
+{
+  "name": "apontamentos",
+  "main": "index.js",
+  "authors": [
+    "gustavobg <gustavobrittogebrim@gmail.com>"
+  ],
+  "description": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "^2.17.1"
+  }
+}

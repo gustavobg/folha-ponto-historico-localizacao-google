@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Location History Visualizer – Worktime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Visualize your collected Google Location History data using an interactive heatmap directly in your browser.">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+    <link rel="stylesheet" href="../libs/leaflet.toolbar/dist/leaflet.toolbar.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha256-ENFZrbVzylNbgnXx0n3I1g//2WeO47XxoPe0vkp3NC8=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../node_modules/leaflet-geosearch/assets/css/leaflet.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:200,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../styles/styles.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container-page">
+    <div id="container-aside" class="container-aside">
+        <!-- Intro, before data has been uploaded -->
+        <div id="intro" class="content-box">
+            <div class="container-header">
+                <h2>Crie sua folha de ponto com o histórico de localização do Google!</h2>
+
+                <p>Bem vindo, usamos o histórico de localização do Google (<a href="https://www.google.com.br/maps/timeline?pb" target="_blank">veja a sua aqui</a>), para gerar uma lista de horários de entrada e saída de determinado ponto.
+                    Não salvamos nada, toda informação é armazenada e processada no seu próprio computador. </p>
+            </div>
+
+            <button class="btn btn-default" id="btnPlace">
+                <span class="btn-icon-round"><i class="material-icons">place</i></span>
+                <span class="btn-text" data-bind="html: workplace"><strong>Clique para inserir seu local de trabalho</strong></span>
+            </button>
+
+            <button class="btn btn-default btn-upload">
+                <span class="btn-icon-round"><i class="material-icons">file_upload</i></span>
+                <span class="btn-text"><strong>Importar o arquivo do Google</strong></span>
+                <input name="file" type="file" id="file" accept="*.json" />
+            </button>
+
+            <button class="btn btn-default" id="btnRelatorio" data-toggle="modal" data-target="#modal-resultado">
+                <span class="btn-icon-round"><i class="material-icons">assignment</i></span>
+                <span class="btn-text"><strong>Visualizar folha de ponto</strong></span>
+            </button>
+        </div>
+
+        <!-- Content displayed once processing complete -->
+        <div id="done" class="content-box hidden">
+            <h2>Importação concluída!</h2>
+
+            <a href="#" data-toggle="modal" data-target="#modal-resultado">Clique aqui para visualizar o relatório</a>
+        </div>
+
+
+    </div>
+    <div class="container-map" id="map"></div>
+    <div id="tooltip"></div>
+</div>
+
+<div id="modal-resultado" class="modal fade">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="loading-status">
+                    <h2>Analizando dados...</h2>
+                    <div class="spinner">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                    <p><span id="currentStatus">Carregando pontos...</span></p>
+                    <p>Isso vai levar um tempo, enquanto isso faz aquele cafezinho.</p>
+                    <p><i>Porque demora tanto?</i> Dependendo de quanto tempo o Google rastreia sua localização, isso pode gerar milhares de pontos, portanto até processá-los leva um tempinho.</p>
+                </div>
+
+                <div id="result-report">
+                    <p>Foram processados <span id="numberProcessed"></span> pontos para gerar o relatório</p>
+
+                    <table class="table table-row">
+                        <thead>
+                        <tr>
+                            <th>
+                                Data
+                            </th>
+                            <th colspan="2">
+                                Período 1
+                            </th>
+                            <th colspan="2">
+                                Período 2
+                            </th>
+                            <th colspan="2">
+                                Período 3
+                            </th>
+                            <th colspan="2">
+                                Período 4
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody id="report">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Exportar para PDF</button>
+                <button type="button" class="btn btn-primary">Exportar para Excel (csv)</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.js" integrity="sha256-jVfFb7AbGi7S/SLNl8SB4/MYaf549eEs+NlIWMoARHg=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnynEiBhiItwzvp2Ly-p7mL7up2mHl8nA&signed_in=false"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+<script type="text/javascript" src="../node_modules/leaflet-geosearch/dist/bundle.min.js"></script>
+<script type="text/javascript" src="../node_modules/requirejs/require.js"></script>
+<script type="text/javascript" src="require-config.js"></script>
+</body>
+</html>
+
+

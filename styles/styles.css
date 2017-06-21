@@ -1,0 +1,247 @@
+* {
+    font-family: "Open Sans", sans-serif;
+}
+.hidden {
+    display: none;
+}
+
+#loading-status {
+    display: none;
+}
+
+.loading #loading-status {
+    display: block;
+}
+.loading #result-report {
+    display: none;
+}
+
+#tooltip {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-size: .9em;
+    z-index: 1000;
+    padding: 4px 8px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
+    width: 350px;
+    left: 50%;
+    bottom: 50px;
+}
+.container-page {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.container-page p {
+    margin-bottom: 30px;
+}
+.container-aside {
+    width: 360px;
+    background: #313131;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    color: #fff;
+}
+.container-header a {
+    color: #fff;
+    font-size: .9em;
+    font-weight: 600;
+}
+.container-aside .container-header {
+    background: #8278f3;
+    padding: 20px;
+}
+.container-header h2 {
+    font-size: 1.3em;
+    line-height: 1.3em;
+}
+.container-header p {
+    font-size: .9em;
+}
+.container-aside .btn-upload {
+    position: relative;
+    cursor: pointer;
+}
+.container-aside .btn-upload input {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+.container-aside .btn-default {
+    display: flex;
+    width: 100%;
+    padding: 0;
+    background: none;
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+    border-radius: 0;
+    border: 0;
+    align-items: stretch;
+
+    border-bottom: solid 1px #474747;
+}
+.container-aside .btn-default .btn-icon-round {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+.container-aside .btn-default .btn-text {
+    padding: 15px 10px;
+    text-align: left;
+}
+.container-aside .btn-default strong {
+    font-size: .9em;
+    font-weight: 200;
+}
+.container-aside .btn-default .info {
+    display: block;
+    margin: 0;
+    font-size: .8em;
+    color: rgba(255,255,255,.8)
+}
+.container-aside .btn-default .btn-text a {
+    display: block;
+    color: #fff;
+}
+.container-aside .btn-default:hover,
+.container-aside .btn-default:focus,
+.container-aside .btn-default:active,
+.active {
+    background: #6960ce;
+}
+.container-aside .btn-default.active,
+.container-aside .btn-default:active {
+    box-shadow: none;
+    color: #fff;
+}
+
+.container-map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 360px;
+    right: 0;
+}
+.spinner {
+    margin: 20px auto 0;
+    width: 70px;
+    text-align: center;
+}
+h3, h2 {
+    font-family: 'Montserrat', sans-serif;
+}
+h2 {
+    margin: 0 0 30px 0;
+}
+.spinner > div {
+    width: 18px;
+    height: 18px;
+    background-color: #333;
+
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+    animation: bouncedelay 1.4s infinite ease-in-out;
+    /* Prevent first frame from flickering when animation starts */
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.spinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+@-webkit-keyframes bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0.0) }
+    40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bouncedelay {
+    0%, 80%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 40% {
+          transform: scale(1.0);
+          -webkit-transform: scale(1.0);
+      }
+}
+button {
+    cursor: pointer;
+}
+/* checkbox */
+input[name="data"] ~ .table tr th:first-child,
+input[name="data"] ~ .table tr td:first-child {
+    display: none;
+}
+input[name="data"]:checked ~ .table tr th:first-child,
+input[name="data"]:checked ~ .table tr td:first-child{
+    display: table-cell;
+}
+/* not selecteble date column */
+[data-date]:before {
+    content: attr(data-date);
+    display: table-cell;
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #eceeef;
+    font-weight: 600;
+    border-right: 1px solid #eceeef;
+}
+.table thead th:first-child  {
+    text-align: left;
+}
+.table thead th {
+    text-align: center;
+}
+tr.month-year td {
+    border-bottom: solid 2px #ccc;
+}
+.month-year h3 {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    color: #999;
+}
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+#remove-location {
+    color: #fff;
+}
+.disabled {
+    pointer-events: none;
+}
+.empty:before {
+    color: #ebebeb;
+    text-align: center;
+    content: "--";
+    margin: 0 auto;
+    display: block;
+}
+.end {
+    border-right: solid 1px #eceeef;
+}
