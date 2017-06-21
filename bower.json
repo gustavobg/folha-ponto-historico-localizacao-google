@@ -17,7 +17,6 @@
   ],
   "dependencies": {
     "requirejs": "^2.3.3",
-    "leaflet": "^1.0.3",
     "Leaflet.toolbar": "leaflet.toolbar#^0.1.2"
   }
 }
