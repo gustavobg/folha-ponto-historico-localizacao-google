@@ -1,6 +1,6 @@
-var modulesPath = '../node_modules/';
-var libsPath = '../libs/';
-var scriptsPath = '../js/';
+var modulesPath = 'node_modules/';
+var libsPath = 'libs/';
+var scriptsPath = 'js/';
 
 requirejs.config({
     baseUrl: '',

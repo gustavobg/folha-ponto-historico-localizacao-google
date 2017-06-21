@@ -1,4 +1,4 @@
-define(['leaflet', '../js/gmaps-style-dark', 'tiles.google'], function (L, styleDark) {
+define(['leaflet', 'js/gmaps-style-dark', 'tiles.google'], function (L, styleDark) {
 
     var tiles = {};
     var tilesInstance = null;
