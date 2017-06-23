@@ -86,6 +86,15 @@ define([], function () {
             ]
         },
         {
+            "featureType": "poi.business",
+            "elementType": "labels.icon",
+            "stylers": [
+                {
+                    "visibility": "shown"
+                }
+            ]
+        },
+        {
             "featureType": "poi.park",
             "elementType": "labels.text.fill",
             "stylers": [
