@@ -1,7 +1,25 @@
-define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize', 'leaflet-heatmap', 'bootstrap'], function ($, CurrentPosition, tiles, controls, turf) {
+define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize', 'leaflet-heatmap', 'bootstrap', 'leaflet.extensions'], function ($, CurrentPosition, tiles, controls, turf) {
     var map;
 
-    var layerBuffer = new L.geoJson(null, {});
+    var layerBuffer = new L.geoJson(null, {
+        onEachFeature: function (feature, layer) {
+            layer.setStyle({ fillColor: '#ffffff', color: '#ffffff', weight: 1 })
+        }
+    });
+    var layerDebug = new L.geoJson(null, {
+        pointToLayer: function (geojson, latlng) {
+            return L.marker(latlng, {
+                icon: L.divIcon({
+                    html: '<div class="icon-point"></div>',
+                    iconSize: [3,3],
+                    iconAnchor: [3,3],
+                    popupAnchor: [1,-34],
+                    tooltipAnchor: [16,-28],
+                    className: 'leaflet-custom-icon'
+                })
+            });
+        }
+    });
 
     var heatOptions = {
         tileOpacity: 1,
@@ -17,11 +35,13 @@ define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize',
 
     var workplaceHtml = '<strong>Local de trabalho: </strong><p class="info">{lat}, {lng}</p>';
 
-    var addWorkplace = function (layer) {
+    var addWorkplace = function (geojson) {
+
+        var workplaceBufferedGeoJson = turf.buffer(geojson, 50, 'meters');
+        layerBuffer.addData(workplaceBufferedGeoJson);
+        var layer = featureGroup.addDataLayer(geojson);
         var latLng = layer.getLatLng();
         var html = L.Util.template(workplaceHtml, latLng);
-        var workplaceBufferedGeoJson = turf.buffer(layer.toGeoJSON(), 50, 'meters');
-        layerBuffer.addData(workplaceBufferedGeoJson);
         vmMap.workplace(html);
         vmMap.workplaceGeoJson = workplaceBufferedGeoJson;
     };
@@ -35,9 +55,7 @@ define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize',
         localStorage.removeItem('workplace');
     };
     var onEachFeature = function (feature, layer) {
-
         bindLayerEvents(layer);
-        addWorkplace(layer);
     };
 
     var heat = null;
@@ -55,9 +73,27 @@ define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize',
             });
     };
 
+    var geoJsonPointToLayer = function (geojson, latlng) {
+        var color = geojson.hasOwnProperty('properties') && geojson.properties.hasOwnProperty('color') ? geojson.properties.color : '#8278f3';
+        var html = L.Util.template('<div class="base-icon-circle" style="background-color: {color}"></div><i class="material-icons icon" style="background-color: {color}"></i><i class="material-icons base-icon">place</i></div><i class="material-icons base-icon base-icon-shadow">place</i>', { color: color });
+        return L.marker(latlng, {
+            icon: L.divIcon({
+                html: html,
+                iconSize: [25,41],
+                iconAnchor: [12,31],
+                popupAnchor: [1,-34],
+                tooltipAnchor: [16,-28],
+                shadowSize: [41,41],
+                className: 'leaflet-custom-icon'
+            })
+        });
+    };
+
     var featureGroup = new L.geoJson(null, {
-        onEachFeature: onEachFeature
+        onEachFeature: onEachFeature,
+        pointToLayer: geoJsonPointToLayer
     });
+
 
 
     var zoomToWorkplace = function () {
@@ -131,6 +167,7 @@ define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize',
         map = L.map( 'map', { editable: true, editOptions: { featuresLayer: featureGroup } } ).setView([0,0], 2);
         featureGroup.addTo(map);
         layerBuffer.addTo(map);
+        layerDebug.addTo(map);
 
         document.getElementById('btnRelatorio').classList.add('disabled');
 
@@ -149,7 +186,8 @@ define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize',
             if (window.localStorage) {
                 var geoJson = e.layer.toGeoJSON();
                 localStorage.setItem('workplace', JSON.stringify(geoJson));
-                addWorkplace(e.layer);
+                addWorkplace(geoJson);
+                e.layer.remove();
             } else {
                 throw 'Your browser don\'t support localStorage';
             }
@@ -163,7 +201,7 @@ define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize',
             var geoJson = localStorage.getItem('workplace');
             if (geoJson !== null) {
                 geoJson = JSON.parse(geoJson);
-                featureGroup.addData(geoJson);
+                addWorkplace(geoJson);
             }
         } else {
             throw 'Your browser don\'t support localStorage';
@@ -316,7 +354,7 @@ define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize',
                 p = p - 1;
             }
             for (var x = 0; x < 4 - periods.length;) {
-                reportHtml += '<td><span class="empty"></span></td><td><span class="empty"></span></td>';
+                reportHtml += '<td class="unselectable"><span class="empty"></span></td><td><span class="empty"></span></td>';
                 x = x + 1;
             }
             reportHtml += '</tr>';
@@ -338,7 +376,7 @@ define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize',
 
         setStatus( 'Preparando para importar o arquivo (' + fileSize + ')...' );
 
-        var currentPosition = new CurrentPosition(layerBuffer);
+        var currentPosition = new CurrentPosition(layerDebug);
         currentPosition.setWorkplace(vmMap.workplaceGeoJson);
 
 
@@ -384,10 +422,11 @@ define(['jquery', 'current.position', 'tiles', 'controls', 'turf', 'prettysize',
     var upload = function (file) {
 
         $('body').addClass('loading');
-        $('#modal-resultado').modal('show');
 
-        // Now start working!
-        processFile(file);
+        $('#modal-resultado').modal('show').on('shown.bs.modal', function () {
+            // Now start working!
+            processFile(file);
+        });
 
     };
 

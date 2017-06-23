@@ -49,6 +49,22 @@
     bottom: 0;
     top: 0;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.container-aside .footer-copyright {
+    flex-grow: 1;
+    display: flex;
+    font-size: .8em;
+}
+.container-aside .footer-copyright a {
+    color: #ccc;
+    text-decoration: underline;
+}
+
+.container-aside .footer-copyright .copyright {
+    margin: 10px !important;
+    align-self: flex-end;
 }
 .container-header a {
     color: #fff;
@@ -244,4 +260,50 @@ tr.month-year td {
 }
 .end {
     border-right: solid 1px #eceeef;
+}
+
+.leaflet-custom-icon .icon {
+    position: absolute;
+    z-index: 11;
+    left: 1px;
+    top: 2px;
+    font-size: 17px !important;
+    color: #fff;
+    background: rgba(0,0,0,.0) !important;
+    border-radius: 10px;
+    padding: 3px;
+}
+.leaflet-custom-icon .base-icon-circle {
+    width: 23px;
+    height: 23px;
+    border-radius: 24px;
+    z-index: 10;
+    position: absolute;
+    left: 1px;
+    top: 2px;
+}
+.leaflet-custom-icon .base-icon {
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    font-size: 45px;
+    color: #8278f3;
+    z-index: 9;
+    border-radius: 15px;
+}
+
+.leaflet-custom-icon .base-icon.base-icon-shadow {
+    color: #000;
+    z-index: 8;
+    font-size: 53px;
+    left: -14px;
+    bottom: -5px;
+    opacity: .2;
+}
+.leaflet-custom-icon .icon-point {
+    background: #fff;
+    border-radius: 5px;
+    width: 3px;
+    height: 3px;
+
 }

@@ -9,11 +9,11 @@ define(['moment', 'turf', 'moment-timezone'], function (moment, turf) {
 
     moment.locale('pt-br');
 
-    var PONTOSTRABALHO = [[-47.81537532806397,-21.208268910028956],[-47.81508564949036,-21.208118877115016],[-47.81466722488404,-21.20805886390675],[-47.814098596572876,-21.20805886390675],[-47.81375527381897,-21.20815888590698],[-47.81342267990112,-21.20838893625033],[-47.81317591667176,-21.208879042308347],[-47.81320810317993,-21.209469167852124],[-47.813293933868415,-21.20984924746203],[-47.81387329101563,-21.210219324036785],[-47.81449556350709,-21.21042936708547],[-47.81535387039185,-21.210559393584916],[-47.81567573547363,-21.21042936708547],[-47.815793752670295,-21.21010930136822],[-47.815793752670295,-21.209719220337174],[-47.81566500663757,-21.209289129800666],[-47.815568447113044,-21.208929053039125],[-47.81551480293274,-21.208628988400392],[-47.81537532806397,-21.208268910028956]];
+    //var PONTOSTRABALHO = [[-47.81537532806397,-21.208268910028956],[-47.81508564949036,-21.208118877115016],[-47.81466722488404,-21.20805886390675],[-47.814098596572876,-21.20805886390675],[-47.81375527381897,-21.20815888590698],[-47.81342267990112,-21.20838893625033],[-47.81317591667176,-21.208879042308347],[-47.81320810317993,-21.209469167852124],[-47.813293933868415,-21.20984924746203],[-47.81387329101563,-21.210219324036785],[-47.81449556350709,-21.21042936708547],[-47.81535387039185,-21.210559393584916],[-47.81567573547363,-21.21042936708547],[-47.815793752670295,-21.21010930136822],[-47.815793752670295,-21.209719220337174],[-47.81566500663757,-21.209289129800666],[-47.815568447113044,-21.208929053039125],[-47.81551480293274,-21.208628988400392],[-47.81537532806397,-21.208268910028956]];
 
     var dateTest = null; //'11/05/2017'; // DD/MM/YYYY
 
-    var CurrentPosition = function (featureGroup) {
+    var CurrentPosition = function (layerDebug) {
 
         var self = this;
 
@@ -34,7 +34,7 @@ define(['moment', 'turf', 'moment-timezone'], function (moment, turf) {
         //this.date = setTimezone(new DateTimeZone('America/Sao_Paulo'));
 
         // pega a região que trabalha
-        this.areaTrabalho = new L.Polygon(PONTOSTRABALHO).toGeoJSON();
+        this.areaTrabalho = null;
         this.setWorkplace = function (geoJson) {
             self.areaTrabalho = geoJson;
         };
@@ -203,8 +203,8 @@ define(['moment', 'turf', 'moment-timezone'], function (moment, turf) {
             var $currentCoordinate = turf.point([this.longitude, this.latitude]);
             var atWork = turf.inside($currentCoordinate, self.areaTrabalho);
             if (debugging) {
-                console.log($currentCoordinate, self.areaTrabalho);
-                featureGroup.addData($currentCoordinate);
+                //console.log($currentCoordinate, self.areaTrabalho);
+                layerDebug.addData($currentCoordinate);
             }
             return atWork;
         };
