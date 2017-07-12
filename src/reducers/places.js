@@ -1,3 +1,5 @@
+
+
 const places = (state = [], action) => {
 
     switch (action.type) {

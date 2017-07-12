@@ -4,7 +4,15 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@turf/helpers": "^4.5.2",
+    "@turf/inside": "^4.5.2",
+    "leaflet": "^1.1.0",
+    "leaflet-geosearch": "^2.4.0",
+    "leaflet-toolbar": "^0.1.2",
+    "leaflet.gridlayer.googlemutant": "^0.6.2",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
     "redux": "^3.7.1"
   },
   "devDependencies": {

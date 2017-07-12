@@ -3,10 +3,3 @@
 node_modules/*
 data
 data/historico-local-2016-2017.json
-!/node_modules/leaflet-geosearch/
-!/node_modules/leaflet/
-!/node_modules/requirejs/
-!/node_modules/moment/
-!/node_modules/turf/
-!/node_modules/moment-timezone/
-!/node_modules/jquery/
